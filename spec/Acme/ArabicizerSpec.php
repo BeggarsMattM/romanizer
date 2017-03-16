@@ -27,4 +27,19 @@ class ArabicizerSpec extends ObjectBehavior
     {
       $this->toArabic("III")->shouldReturn(3);
     }
+
+    function it_converts_IV_to_4()
+    {
+      $this->toArabic("IV")->shouldReturn(4);
+    }
+
+    function it_converts_V_to_5()
+    {
+      $this->toArabic("V")->shouldReturn(5);
+    }
+
+    function it_converts_VI_to_6()
+    {
+      $this->toArabic("VI")->shouldReturn(6);
+    }
 }
