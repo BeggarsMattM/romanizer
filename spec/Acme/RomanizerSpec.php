@@ -82,4 +82,11 @@ class RomanizerSpec extends ObjectBehavior
     {
       $this->toRoman(3456)->shouldReturn("MMMCDLVI");
     }
+
+    function it_converts_4000_to_overlined_IV()
+    {
+      $this->toBiggerRoman(4000)->shouldReturn([
+        "1" => "IV"
+      ]);
+    }
 }

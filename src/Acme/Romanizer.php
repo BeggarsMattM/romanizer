@@ -36,4 +36,26 @@ class Romanizer
           }
         }
     }
+
+    public function toBiggerRoman($n)
+    {
+      if ($n <= 0) { throw new \Exception; }
+      return $this->_toBiggerRoman($n);
+    }
+
+    public function _toBiggerRoman($n)
+    {
+        if ($n == 0) return "";
+
+        if ($n < 4000) return [0 => $this->toRoman($n)];
+
+        return [1 => "IV"];
+
+        $thousands = floor($n/1000);
+        return [
+          1 => [$this->toRoman(floor($n/1000))],
+          0 => [$this->toRoman($n)]
+        ];
+    }
+
 }
