@@ -90,4 +90,13 @@ class RomanizerSpec extends ObjectBehavior
         0 => ""
       ]);
     }
+
+    function it_converts_a_nine_digit_number_predictably()
+    {
+      $this->toBiggerRoman(123124125)->shouldReturn([
+        2 => "CXXIII",
+        1 => "CXXIV",
+        0 => "CXXV"
+      ]);
+    }
 }
