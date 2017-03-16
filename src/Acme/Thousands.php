@@ -4,7 +4,7 @@ namespace Acme;
 
 class Thousands
 {
-    public function convert($n)
+    public static function convert($n)
     {
         $levels = floor(log10($n) / 3);
 

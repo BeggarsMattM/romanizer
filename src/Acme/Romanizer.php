@@ -47,15 +47,11 @@ class Romanizer
     {
         if ($n == 0) return "";
 
-        if ($n < 4000) return [0 => $this->toRoman($n)];
+        $components = Thousands::convert($n);
 
-        return [1 => "IV"];
-
-        $thousands = floor($n/1000);
-        return [
-          1 => [$this->toRoman(floor($n/1000))],
-          0 => [$this->toRoman($n)]
-        ];
+        return array_map(function($component) {
+          return $this->_toRoman($component);
+        }, $components);
     }
 
 }

@@ -86,7 +86,8 @@ class RomanizerSpec extends ObjectBehavior
     function it_converts_4000_to_overlined_IV()
     {
       $this->toBiggerRoman(4000)->shouldReturn([
-        "1" => "IV"
+        1 => "IV",
+        0 => ""
       ]);
     }
 }
