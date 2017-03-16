@@ -12,4 +12,9 @@ class RomanizerSpec extends ObjectBehavior
     {
         $this->shouldHaveType(Romanizer::class);
     }
+
+    function it_converts_1_to_I()
+    {
+      $this->toRoman(1)->shouldReturn("I");
+    }
 }
