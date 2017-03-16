@@ -42,4 +42,39 @@ class ArabicizerSpec extends ObjectBehavior
     {
       $this->toArabic("VI")->shouldReturn(6);
     }
+
+    function it_converts_VIII_to_8()
+    {
+      $this->toArabic("VIII")->shouldReturn(8);
+    }
+
+    function it_converts_IX_to_9()
+    {
+      $this->toArabic("IX")->shouldReturn(9);
+    }
+
+    function it_converts_X_to_10()
+    {
+      $this->toArabic("X")->shouldReturn(10);
+    }
+
+    function it_converts_XXXVII_to_37()
+    {
+      $this->toArabic("XXXVII")->shouldReturn(37);
+    }
+
+    function it_converts_L_to_50()
+    {
+      $this->toArabic("L")->shouldReturn(50);
+    }
+
+    function it_converts_MCMXCIX_to_1999()
+    {
+      $this->toArabic("MCMXCIX")->shouldReturn(1999);
+    }
+
+    function it_converts_MMMCDLVI_to_3456()
+    {
+      $this->toArabic("MMMCDLVI")->shouldReturn(3456);
+    }
 }
