@@ -36,4 +36,15 @@ class Arabicizer
 
         return $trans[$head] + $this->toArabic($tail);
     }
+
+    public function toBiggerArabic($n)
+    {
+        if (strlen($n) === 0 || $n[0] !== "(") return $this->toArabic($n);
+
+        $pattern = '/(\(+)(\w+)\)*(.*)/';
+        preg_match($pattern, $n, $matches);
+        $level = strlen($matches[1]);
+        $roman = $matches[2];
+        return pow(1000, $level) * $this->toArabic($roman) + $this->toBiggerArabic($matches[3]);
+    }
 }

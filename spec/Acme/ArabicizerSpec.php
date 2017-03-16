@@ -77,4 +77,19 @@ class ArabicizerSpec extends ObjectBehavior
     {
       $this->toArabic("MMMCDLVI")->shouldReturn(3456);
     }
+
+    function it_converts_overlined_IV_to_4000()
+    {
+      $this->toBiggerArabic("(IV)")->shouldReturn(4000);
+    }
+
+    function it_doesnt_get_confused_by_numbers_under_4000()
+    {
+      $this->toBiggerArabic("MMMCDLVI")->shouldReturn(3456);
+    }
+
+    function it_converts_complex_numbers()
+    {
+      $this->toBiggerArabic("((CXXIII))(CXXIV)CXXV")->shouldReturn(123124125);
+    }
 }
