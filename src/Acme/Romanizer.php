@@ -6,6 +6,8 @@ class Romanizer
 {
     public function toRoman($n)
     {
-        return "I";
+        if ($n <= 0) { throw new \Exception; }
+        if ($n == 1) return "I";
+        return "I" . $this->toRoman($n - 1);
     }
 }
