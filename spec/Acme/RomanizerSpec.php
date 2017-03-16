@@ -62,4 +62,24 @@ class RomanizerSpec extends ObjectBehavior
     {
       $this->toRoman(10)->shouldReturn("X");
     }
+
+    function it_converts_37_to_XXXVII()
+    {
+      $this->toRoman(37)->shouldReturn("XXXVII");
+    }
+
+    function it_converts_50_to_L()
+    {
+      $this->toRoman(50)->shouldReturn("L");
+    }
+
+    function it_converts_1999_to_MCMXCIX()
+    {
+      $this->toRoman(1999)->shouldReturn("MCMXCIX");
+    }
+
+    function it_converts_3456_to_MMMCDLVI()
+    {
+      $this->toRoman(3456)->shouldReturn("MMMCDLVI");
+    }
 }
