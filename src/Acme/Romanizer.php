@@ -22,8 +22,8 @@ class Romanizer
 
     public function toRoman($n)
     {
-      if ($n <= 0) { throw new \Exception; }
-      return $this->_toRoman($n);
+        if ($n <= 0) { throw new \Exception; }
+        return $this->_toRoman($n);
     }
 
     public function _toRoman($n)
