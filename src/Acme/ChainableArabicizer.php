@@ -27,20 +27,49 @@ class ChainableArabicizer
     ];
   }
 
-    public function toArabic()
-    {
-        if (strlen($this->n) === 0) return 0;
-        if (strlen($this->n) === 1) return $this->trans[$this->n];
+  private function isZero()
+  {
+    return $this->n === 0;
+  }
 
-        $firstTwoChars = substr($this->n, 0, 2);
-        if (array_key_exists($firstTwoChars, $this->trans)) {
-          $tail = substr($this->n, 2);
-          return $this->trans[$firstTwoChars] + $this->toArabic($tail);
-        }
+  private function isSingleChar()
+  {
+    return strlen($this->n) === 1;
+  }
 
-        $head = $this->n[0];
-        $tail = substr($this->n, 1);
+  private function translateChar()
+  {
+    return $this->trans[$this->n];
+  }
 
-        return $this->trans[$head] + $this->toArabic($tail);
-    }
+  private function take($n)
+  {
+    return substr($this->n, 0, $n);
+  }
+
+  private function drop($n)
+  {
+    return substr($this->n, $n);
+  }
+
+  private function isValidDigraph($twoChars)
+  {
+    return array_key_exists($twoChars, $this->trans);
+  }
+
+  public function toArabic()
+  {
+      if ( $this->isZero() ) return 0;
+      if ( $this->isSingleChar() ) return $this->translateChar();
+
+      $firstTwoChars = $this->take(2);
+
+      if ( $this->isValidDigraph($firstTwoChars) ) {
+        $tail = $this->drop(2);
+        return $this->trans[$firstTwoChars] + $this->toArabic($tail);
+      }
+
+      $head = $this->take(1);
+      return $this->trans[$head] + $this->toArabic($tail);
+  }
 }
