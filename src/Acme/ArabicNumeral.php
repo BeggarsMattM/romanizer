@@ -26,6 +26,17 @@ class ArabicNumeral
     public function __construct($n)
     {
         $this->n = $n;
+        if ( self::isInvalid() ) throw new Exception('Unromanizable number');
+    }
+
+    private function isZero()
+    {
+      return $this->n === 0;
+    }
+
+    private function isComplex()
+    {
+      return $this->n >= 4000;
     }
 
     private function isInvalid()
@@ -38,10 +49,44 @@ class ArabicNumeral
       return $this->trans[$this->n];
     }
 
+    private function reducedBy($val) {
+      return new ArabicNumeral($this->n - $val);
+    }
+
+    private function exceedsOrEquals($val) {
+      return $this->n >= $val;
+    }
+
     public function translate()
     {
-        if ( self::isInvalid() ) throw new Exception('Unromanizable number');
+      if ( self::isComplex() ) return self::complexTranslate();
 
-        return $this->value();
+      foreach ($this->trans as $value => $romanNumber)
+      {
+        if (self::exceedsOrEquals($value))
+        {
+          try {
+            $reducedValue = self::reducedBy($value);
+          }
+          catch (Exception $e) {
+            return $romanNumber;
+          }
+          return $romanNumber . $reducedValue->translate();
+        }
+      }
+    }
+
+    private function complexTranslate()
+    {
+      $components = PowersOfThousands::convert($this->n);
+
+      return array_map(function($component) {
+        try {
+          return (new ArabicNumeral($component))->translate();
+        }
+        catch (Exception $e) {
+          return "";
+        }
+      }, $components);
     }
 }
