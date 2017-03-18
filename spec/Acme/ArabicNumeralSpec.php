@@ -116,4 +116,13 @@ class ArabicNumeralSpec extends ObjectBehavior
         0 => "CXXV"
       ]);
     }
+
+    function it_can_deal_with_the_pesky_4000_rule()
+    {
+      $this->beConstructedWith(3999100, 'n');
+      $this->translate()->shouldReturn([
+        '1' => 'MMMCMXCIX',
+        '0' => 'C'
+      ]);
+    }
 }

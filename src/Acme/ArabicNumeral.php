@@ -78,7 +78,8 @@ class ArabicNumeral
 
     private function complexTranslate()
     {
-      $components = PowersOfThousands::convert($this->n);
+      $components = PowersOfThousands::convert($this->n)
+        ->romanize()->get();
 
       return array_map(function($component) {
         try {
