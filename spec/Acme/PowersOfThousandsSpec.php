@@ -2,15 +2,15 @@
 
 namespace spec\Acme;
 
-use Acme\Thousands;
+use Acme\PowersOfThousands;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class ThousandsSpec extends ObjectBehavior
+class PowersOfThousandsSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType(Thousands::class);
+        $this->shouldHaveType(PowersOfThousands::class);
     }
 
     function it_converts_numbers_smaller_than_1000()

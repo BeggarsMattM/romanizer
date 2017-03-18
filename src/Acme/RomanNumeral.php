@@ -39,6 +39,16 @@ class RomanNumeral
     return strlen($this->n) === 1;
   }
 
+  private function isSimple()
+  {
+    return self::isNothing() || $this->n[0] !== "(";
+  }
+
+  private function isComplex()
+  {
+    return ! self::isSimple();
+  }
+
   public function value()
   {
     if ( ! self::isValidRoman() ) throw new Exception("Illegal character");
@@ -63,6 +73,7 @@ class RomanNumeral
   public function translate()
   {
       if ( self::isNothing() ) return 0;
+      if ( self::isComplex() ) return self::complexTranslate();
       if ( self::isSingleChar() ) return self::value();
 
       $firstTwoChars = new RomanNumeral(self::take(2));
@@ -74,5 +85,11 @@ class RomanNumeral
       $head = new RomanNumeral(self::take(1));
       $tail = new RomanNumeral(self::drop(1));
       return $head->value() + $tail->translate();
+  }
+
+  public function complexTranslate()
+  {
+      $complex = new ComplexRomanNumeral($this->n);
+      return $complex->translate();
   }
 }

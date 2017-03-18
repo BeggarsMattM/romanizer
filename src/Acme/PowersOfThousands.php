@@ -2,7 +2,7 @@
 
 namespace Acme;
 
-class Thousands
+class PowersOfThousands
 {
     public static function convert($n)
     {

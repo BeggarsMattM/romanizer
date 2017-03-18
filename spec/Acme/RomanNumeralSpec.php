@@ -6,6 +6,8 @@ use Acme\RomanNumeral;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
+use Acme\PowersOfThousands;
+
 class RomanNumeralSpec extends ObjectBehavior
 {
     function it_is_initializable()
@@ -94,17 +96,20 @@ class RomanNumeralSpec extends ObjectBehavior
 
     function it_converts_overlined_IV_to_4000()
     {
-      $this->toBiggerArabic("(IV)")->shouldReturn(4000);
+      $this->beConstructedWith('(IV)', 'n');
+      $this->translate()->shouldReturn(4000);
     }
 
     function it_doesnt_get_confused_by_numbers_under_4000()
     {
-      $this->toBiggerArabic("MMMCDLVI")->shouldReturn(3456);
+      $this->beConstructedWith('(MMMCDLVI)', 'n');
+      $this->translate()->shouldReturn(3456000);
     }
 
     function it_converts_complex_numbers()
     {
-      $this->toBiggerArabic("((CXXIII))(CXXIV)CXXV")->shouldReturn(123124125);
+      $this->beConstructedWith('((CXXIII))(CXXIV)CXXV', 'n');
+      $this->translate()->shouldReturn(123124125);
     }
 
 

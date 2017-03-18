@@ -47,7 +47,7 @@ class Romanizer
     {
         if ($n == 0) return "";
 
-        $components = Thousands::convert($n);
+        $components = PowersOfThousands::convert($n);
 
         return array_map(function($component) {
           return $this->_toRoman($component);
